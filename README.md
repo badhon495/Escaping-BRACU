@@ -7,7 +7,7 @@ This is the visual version of the game BRACU is playing with our lives. This gam
 - [ ] Creates randomly generated bubbles using the midpoint circle algorithm. These bubbles will contain deduction values.
 - [ ] If the box collides with a bubble, the score will decrease by the value shown in the bubble.
 - [ ] The goal is to move the box to a designated person without touching any bubbles.
-- [ ] The score will be updated based on BRACU's grading system.
+- [x] The score will be updated based on BRACU's grading system.
 - [ ] The box will not be able to cross the restricted movement area.
 - [ ] The game will have 11 levels.
 - [ ] The difficulty will increase as the levels progress.
