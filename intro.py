@@ -34,7 +34,7 @@ def display():
     
     # Game Title
     glColor3f(1, 1, 1)
-    glRasterPos2f(-100, 200)
+    glRasterPos2f(-50, 200)
     for ch in "Escaping BRACU":
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ord(ch))
     
