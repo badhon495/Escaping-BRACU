@@ -3,6 +3,11 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 import sys
 from drawing_algorithms import midpoint_line, convert_coordinate, midpointcircle
+from maze_points import get_maze_points
+
+
+# Get the maze points
+maze_points = get_maze_points()
 
 
 # Window dimensions
@@ -16,37 +21,13 @@ def plot_point(x, y):
     glVertex2f(x, y)
     glEnd()
 
-# Import your midpoint_line, midpointcircle, and other functions here
-# Example: from algorithms import midpoint_line, midpointcircle
 
 def draw_maze():
     """Function to draw the maze structure."""
+    global maze_points
     glColor3f(0, 0, 0)  # Set the color to black
-    
-    # Example maze structure
-    midpoint_line(-350, -250, -350, 250)  # Vertical line
-    midpoint_line(-350, 250, 350, 250)    # Horizontal line
-    midpoint_line(350, 250, 350, -250)    # Vertical line
-    midpoint_line(350, -250, -350, -250)  # Horizontal line
-
-    # draw the maze using midpoint_line
-    midpoint_line(-300, -200, -150, -200) #horizontal line
-    midpoint_line(-300, 200, -150, 200) #horizontal line
-    midpoint_line(-300, -200, -300, 200) #vertical line
-    midpoint_line(-150, -100, -150, 200) #vertical line
-
-    #draw a horizontal line from -150, -100
-    midpoint_line(-150, -100, 100, -100)
-    #draw a horizontal line from -300, -200
-    midpoint_line(-150, -200, 300, -200)
-    #draw a vertical line from 300, -200
-    midpoint_line(300, -200, 300, 200)
-    #draw a horizontal line from 100, -100
-    midpoint_line(100, -100, 100, 200)
-    midpoint_line(100, 200, 300, 200)
-
-
-   
+    for i in range(len(maze_points)):
+        midpoint_line(maze_points[i][0], maze_points[i][1], maze_points[i][2], maze_points[i][3])
 
 
 
