@@ -1,4 +1,3 @@
-
 from OpenGL.GLU import *
 from random import randint as random
 from OpenGL.GL import *

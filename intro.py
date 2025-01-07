@@ -58,7 +58,7 @@ def keyboardListener(key, _, __):
         # Transition to game
         print("Starting Game...")
         game_state = 'game'
-        # Here you would typically call the main game function
+        start_game()
     elif key == b'q':
         # Quit the game
         print("Goodbye!")
@@ -74,6 +74,7 @@ def mouseListener(button, state, x, y):
         if -50 < c_x < 50 and -25 < c_y < 25:
             print("Starting Game...")
             game_state = 'game'
+            start_game()
         
         # Quit button area
         elif -50 < c_x < 50 and -125 < c_y < -75:
@@ -88,14 +89,16 @@ def init():
     glLoadIdentity()
     glOrtho(-250, 250, -400, 400, -1, 1)
 
-# Main program setup
-glutInit()
-glutInitWindowSize(W_WIDTH, W_HEIGHT)
-glutInitWindowPosition(0, 0)
-glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB)
-wind = glutCreateWindow(b"Escaping BRACU")
-init()
-glutDisplayFunc(display)
-glutKeyboardFunc(keyboardListener)
-glutMouseFunc(mouseListener)
-glutMainLoop()
+def intro_main(start_game_func):
+    global start_game
+    start_game = start_game_func
+    glutInit()
+    glutInitWindowSize(W_WIDTH, W_HEIGHT)
+    glutInitWindowPosition(0, 0)
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB)
+    glutCreateWindow(b"Escaping BRACU")
+    init()
+    glutDisplayFunc(display)
+    glutKeyboardFunc(keyboardListener)
+    glutMouseFunc(mouseListener)
+    glutMainLoop()

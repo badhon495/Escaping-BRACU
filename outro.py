@@ -7,9 +7,8 @@ from drawing_algorithms import midpoint_line, convert_coordinate
 W_WIDTH, W_HEIGHT = 1000, 800
 
 # Global state variables to be imported from main.py
-total_score = 0  # This would be imported from main.py
-completed_level = 0  # This would be imported from main.py
-cumulative_gpa = 0.0  # This would be imported from main.py
+completed_level = 0
+cumulative_gpa = 0.0
 
 def draw_result_box(x, y, width, height, message):
     """Draw a result box with a specific message."""
@@ -45,11 +44,11 @@ def display():
     for ch in "GAME OVER":
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ord(ch))
     
-    # Display Total Score
+    # Display Total CGPA
     glColor3f(1, 1, 1)
     glRasterPos2f(-150, 250)
-    score_text = f"Total Score: {total_score}"
-    for ch in score_text:
+    cgpa_text = f"Total CGPA: {cumulative_gpa:.2f}"
+    for ch in cgpa_text:
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, ord(ch))
     
     # Display Completed Level
@@ -59,9 +58,8 @@ def display():
     for ch in level_text:
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, ord(ch))
     
-    # Determine result message based on level and CG
+    # Determine result message based on level and CGPA
     if completed_level == 11:
-        # Determine result message based on CG
         result_messages = [
             (4.0, "Wanna join as a faculty?"),
             (3.7, "Lost in jiboner mane, should have studied more in TARC"),
@@ -72,7 +70,6 @@ def display():
             (0.0, "You are a disgrace")
         ]
         
-        # Find the appropriate message based on CG
         result_message = result_messages[-1][1]  # Default to lowest message
         for threshold, message in result_messages:
             if cumulative_gpa >= threshold:
@@ -102,7 +99,14 @@ def keyboardListener(key, _, __):
         # Quit the game
         print("Goodbye!")
         glutLeaveMainLoop()
+        sys.exit(0)  # Ensure the program exits
     glutPostRedisplay()
+
+def exit_game():
+    """Exit the game and show the outro screen."""
+    global completed_level, cumulative_gpa
+    glutLeaveMainLoop()
+    outro_main(completed_level, cumulative_gpa)
 
 def init():
     """Initialize OpenGL settings."""
@@ -111,8 +115,10 @@ def init():
     glLoadIdentity()
     glOrtho(-250, 250, -400, 400, -1, 1)
 
-def main():
-    # GLUT initialization
+def outro_main(level, cgpa):
+    global completed_level, cumulative_gpa
+    completed_level = level
+    cumulative_gpa = cgpa
     glutInit()
     glutInitWindowSize(W_WIDTH, W_HEIGHT)
     glutInitWindowPosition(0, 0)
@@ -124,4 +130,10 @@ def main():
     glutMainLoop()
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) != 3:
+        print("Usage: python outro.py <completed_level> <cumulative_gpa>")
+        sys.exit(1)
+    completed_level = int(sys.argv[1])
+    cumulative_gpa = float(sys.argv[2])
+    outro_main(completed_level, cumulative_gpa)
