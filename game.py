@@ -265,7 +265,8 @@ def start_game():
     glPointSize(2)                    # Set point size
     glutDisplayFunc(display)
     glutReshapeFunc(reshape)
-    glutSpecialFunc(special_keys)     # Register arrow key event handler
+    glutSpecialFunc(special_keys)
+    glutKeyboardFunc(keyboardListener)   # Register arrow key event handler
 
     # need fix. Generate 10 bubbles initially. do you need more bubble?
     for _ in range(10):
