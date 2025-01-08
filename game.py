@@ -252,13 +252,27 @@ def special_keys(key, x, y):
     # Redisplay the scene with the updated box position
     glutPostRedisplay()
 
-# need fix .kaj kore na
+def restart_game():
+    """Restart the game by resetting all values."""
+    global box_x, box_y, bubble_list, level, stickman_x, stickman_y, total_cg, semester_cg
+    box_x, box_y = get_random_position()
+    stickman_x, stickman_y = get_random_position_for_stickman()
+    bubble_list = []
+    level = 1
+    total_cg = 4
+    semester_cg = 4
+    for _ in range(3):
+        new_bubble = create_bubble(bubble_list, inside_maze=True)
+        bubble_list.append(new_bubble)
+    glutPostRedisplay()
+
 def keyboardListener(key, _, __):
     """Handle keyboard input for outro screen."""
     if key == b'r':
         # Restart the game
         print("Restarting Game...")
-        # Add logic to reset game state
+        restart_game()
+        
     elif key == b'q':
         # Quit the game
         print("Goodbye!")
