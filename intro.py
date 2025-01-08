@@ -20,7 +20,7 @@ def draw_button(x, y, width, height, label):
     midpoint_line(x + width/2, y - height/2, x + width/2, y + height/2)
     
     # Add label to the button
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     glRasterPos2f(x - 30, y - 5)
     for ch in label:
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, ord(ch))
@@ -28,12 +28,12 @@ def draw_button(x, y, width, height, label):
 def display():
     """Render the intro screen."""
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-    glClearColor(0, 0, 0, 0)
+    glClearColor(1, 1, 1, 1)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     
     # Game Title
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     glRasterPos2f(-50, 200)
     for ch in "Escaping BRACU":
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ord(ch))
@@ -84,7 +84,7 @@ def mouseListener(button, state, x, y):
 
 def init():
     """Initialize OpenGL settings."""
-    glClearColor(0, 0, 0, 0)
+    glClearColor(1, 1, 1, 1)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     glOrtho(-250, 250, -400, 400, -1, 1)

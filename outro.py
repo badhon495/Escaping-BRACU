@@ -20,7 +20,7 @@ def draw_result_box(x, y, width, height, message):
     midpoint_line(x + width/2, y - height/2, x + width/2, y + height/2)
     
     # Text color
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     
     # Calculate text position to center it in the box
     text_width = len(message) * 6  # Approximate character width
@@ -34,25 +34,25 @@ def draw_result_box(x, y, width, height, message):
 def display():
     """Render the outro screen with game results."""
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-    glClearColor(0, 0, 0, 0)
+    glClearColor(1, 1, 1, 1)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     
     # Game Over Title
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     glRasterPos2f(-100, 300)
     for ch in "GAME OVER":
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ord(ch))
     
     # Display Total CGPA
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     glRasterPos2f(-150, 250)
     cgpa_text = f"Total CGPA: {cumulative_gpa:.2f}"
     for ch in cgpa_text:
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, ord(ch))
     
     # Display Completed Level
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     glRasterPos2f(-150, 220)
     level_text = f"Completed Level: {completed_level}"
     for ch in level_text:
@@ -82,7 +82,7 @@ def display():
     draw_result_box(0, 100, 400, 50, result_message)
     
     # Restart or Quit instructions
-    glColor3f(1, 1, 1)
+    glColor3f(0, 0, 0)
     glRasterPos2f(-150, -250)
     for ch in "Press R to Restart or Q to Quit":
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, ord(ch))
@@ -110,7 +110,7 @@ def exit_game():
 
 def init():
     """Initialize OpenGL settings."""
-    glClearColor(0, 0, 0, 0)
+    glClearColor(1, 1, 1, 1)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     glOrtho(-250, 250, -400, 400, -1, 1)
