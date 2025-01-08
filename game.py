@@ -11,6 +11,7 @@ from CG_calc import calculate_cg
 from intro import intro_main
 from outro import exit_game, outro_main
 maze_points = get_maze_points()
+import math
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
@@ -130,6 +131,16 @@ def is_within_maze(x, y):
 def create_bubble(existing_bubbles, inside_maze=True):
     """Generate a random position for a bubble."""
     while True:
+        r = 10
+        is_special_object = False
+        levels = [3, 8, 11]
+        global level
+        if level in levels:
+            is_special_object = random.random() < 0.50
+        
+        if is_special_object:
+            r = 20
+        
         if inside_maze:
             x = random.randint(-WINDOW_WIDTH // 2 + 20, WINDOW_WIDTH // 2 - 20)
             y = random.randint(-WINDOW_HEIGHT // 2 + 20, WINDOW_HEIGHT // 2 - 20)
@@ -143,12 +154,21 @@ def create_bubble(existing_bubbles, inside_maze=True):
             bubble = {
                 'x': x,
                 'y': y,
-                'r': 10,
+                'r': r,
                 'color': [random.random(), random.random(), random.random()],
                 'dx': random.choice([-1, 1]) * random.uniform(0.5, 1.5),
-                'dy': random.choice([-1, 1]) * random.uniform(0.5, 1.5)
+                'dy': random.choice([-1, 1]) * random.uniform(0.5, 1.5), 
+                'is_special_object': is_special_object
             }
             return bubble
+
+def remove_special_object():
+    global level
+    global bubble_list
+    if level not in [3, 8, 11]:
+            for objects in bubble_list:
+                if objects['is_special_object']:
+                    bubble_list.remove(objects)
 
 
 def check_bubble_overlap(x, y, other_bubbles):
@@ -195,15 +215,28 @@ def special_keys(key, x, y):
         stickman_x, stickman_y = get_random_position_for_stickman()
 
         # need fix. eikhane korte chaisilam hoi nai. fuck you kore dise gpt and brain
-        if level % 3 == 0:
-            new_bubble = create_bubble(bubble_list, inside_maze=True)
-            bubble_list.append(new_bubble)
+        # if level % 3 == 0:
+        #     new_bubble = create_bubble(bubble_list, inside_maze=True)
+        #     bubble_list.append(new_bubble)
 
         # Update total CG
         total_cg = calculate_cg(semester_cg, level, total_cg)
+        #when the level is not 3, 8 or 11 remove the bubble that have 
+        #is_special_object = True
+        # 
+        remove_special_object()
+
         level += 1
+        iterate = int(math.sqrt(level))
+        for i in range(iterate):
+            new_bubble = create_bubble(bubble_list, inside_maze=True)
+            bubble_list.append(new_bubble)
+        remove_special_object()
         semester_cg = 4  # Reset semester CG to 4
         print(f"Level increased to {level}")
+
+        
+                 
 
         # Check if the player has reached level 11
         if level == 11:
@@ -268,7 +301,7 @@ def start_game():
     glutSpecialFunc(special_keys)     # Register arrow key event handler
 
     # need fix. Generate 10 bubbles initially. do you need more bubble?
-    for _ in range(10):
+    for _ in range(3):
         new_bubble = create_bubble(bubble_list, inside_maze=True)
         bubble_list.append(new_bubble)
 
