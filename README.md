@@ -1,6 +1,13 @@
+<div align="center">
+    
 # Escaping-BRACU
 
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyOpenGL](https://img.shields.io/badge/PyOpenGL-FF6F00?style=flat-square&logo=OpenGL&logoColor=white)
+
 This is the visual version of the game BRACU is playing with our lives. This game is part of the CSE423 course project and is developed using OpenGL. For this game, we were only allowed to use GL_POINTS, Midpoint Line, and Midpoint Circle algorithms. The game is developed using Python and PyOpenGL.
+
+</div>
 
 ## Features
 - [x] Restricts the movement area randomly, level by level, using the midpoint line algorithm.
@@ -20,7 +27,7 @@ This is the visual version of the game BRACU is playing with our lives. This gam
 ## How to Run
 1. Clone the repository or download the zip file:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/badhon495/Escaping-BRACU.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -44,24 +51,16 @@ pip install PyOpenGL
 
 ## How to Contribute
 1. Fork the repository.
-2. Clone your forked repository:
-    ```bash
-    git clone <your-forked-repository-url>
-    ```
-3. Create a new branch:
-    ```bash
-    git checkout -b <branch-name>
-    ```
-4. Make your changes.
-5. Push the changes:
-    ```bash
-    git push origin <branch-name>
-    ```
-6. Create a pull request.
+2. Make changes
+3. Create a pull request
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgements
-- Thanks to the CSE423 course instructors for the project guidelines.
-- Special thanks to the OpenGL and PyOpenGL communities for their support and resources.
+---
+
+<div align="center">
+  <p>⭐ Star this repo if you found it helpful!</p>
+</div>
+
