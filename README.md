@@ -7,6 +7,8 @@
 
 This is the visual version of the game BRACU is playing with our lives. This game is part of the CSE423 course project and is developed using OpenGL. For this game, we were only allowed to use GL_POINTS, Midpoint Line, and Midpoint Circle algorithms. The game is developed using Python and PyOpenGL.
 
+https://github.com/user-attachments/assets/9e27d917-c3b1-4d0a-8cdf-5f77e4bb060b
+
 </div>
 
 ## Features
